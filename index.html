@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let Me Keep The Mac</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-mac"><i class="fas fa-laptop"></i></div>
+            <div class="floating-rocket"><i class="fas fa-rocket"></i></div>
+            <div class="floating-lightning"><i class="fas fa-bolt"></i></div>
+            <div class="floating-star"><i class="fas fa-star"></i></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Let Me Keep</span>
+                <span class="pulse-text">The Mac</span>
+            </h1>
+            <p class="hero-subtitle">Why this MacBook is worth more than an extra week of pay for my startup future</p>
+            <div class="cta-buttons">
+                <button class="primary-btn" onclick="scrollToSection('value')">
+                    <i class="fas fa-rocket"></i>
+                    See The Value
+                </button>
+                <button class="secondary-btn" onclick="scrollToSection('commitment')">
+                    <i class="fas fa-handshake"></i>
+                    My Commitment
+                </button>
+                <button class="secondary-btn" onclick="scrollToSection('proposal')">
+                    <i class="fas fa-bullseye"></i>
+                    The Proposal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section id="value" class="value-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line number-highlight"></i>
+                The Real Value Proposition
+            </h2>
+            
+            <div class="value-grid">
+                <div class="value-card" data-aos="fade-up" data-delay="100">
+                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Startup Launch</h3>
+                    <p>This MacBook isn't just a computer - it's my startup launch pad. My current laptop is half-broken and severely limits my productivity. With this Mac, I can immediately start building my own company instead of being held back by unreliable hardware.</p>
+                    <div class="impact-meter">
+                        <div class="meter-bar" data-percent="95"></div>
+                        <span>95% productivity boost</span>
+                    </div>
+                </div>
+
+                <div class="value-card" data-aos="fade-up" data-delay="200">
+                    <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Immediate Value</h3>
+                    <p>The math is simple: I'd need to work ~100 hours at Target (2.5 weeks) to make up the cash difference between the MacBook and extra week's pay. But this MacBook saves me from months of frustration with my broken laptop and enables immediate startup development.</p>
+                    <div class="roi-calculator">
+                        <div class="calc-item">
+                            <span class="calc-label">Extra week of pay:</span>
+                            <span class="calc-value">~40 hours of work</span>
+                        </div>
+                        <div class="calc-item">
+                            <span class="calc-label">Working at Target to make up difference:</span>
+                            <span class="calc-value highlight">~100 hours (2.5 weeks)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="value-card" data-aos="fade-up" data-delay="300">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Strategic Investment</h3>
+                    <p>Remember, I gave up an $8,800/month internship to take a risk on your startup. This MacBook represents more than hardware - it's an investment in my entrepreneurial future. My current laptop crashes frequently and can't handle development work efficiently.</p>
+                    <div class="investment-visual">
+                        <div class="investment-bar">
+                            <div class="bar-segment cash">Cash Value</div>
+                            <div class="bar-segment potential">Potential Value</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-debate" class="ai-debate-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-robot number-highlight"></i>
+                Ask My AI Advocate Anything
+            </h2>
+
+            <div class="debate-intro">
+                <p>🤖 <strong>Talk to Piam's AI!</strong> Piam trained an AI specifically to argue their case for keeping the MacBook. Ask it tough questions, voice your concerns - it knows all of Piam's arguments and will convince you this is a smart business decision!</p>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="ai-avatar">
+                        <i class="fas fa-robot"></i>
+                        <span>MacBook Advocate AI</span>
+                    </div>
+                    <div class="chat-status">
+                        <span class="status-indicator"></span>
+                        Ready to convince you
+                    </div>
+                </div>
+
+                <div id="chatMessages" class="chat-messages">
+                    <div class="message ai-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Hello! I'm Piam's AI advocate, and I'm here to convince YOU why letting Piam keep that MacBook is the smartest business decision you'll make. What concerns do you have? Budget? ROI? I've got answers! 💼</p>
+                            <div class="message-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-group">
+                        <input type="text" id="chatInput" placeholder="Type your concerns about giving Piam the MacBook..." maxlength="500">
+                        <button id="sendButton" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                            Send
+                        </button>
+                    </div>
+                    <div class="chat-stats">
+                        <span id="messageCount">0</span> questions answered •
+                        <span id="advocateWins">0</span> concerns addressed
+                    </div>
+                </div>
+            </div>
+
+            <div class="debate-tips">
+                <h4>💡 Try asking:</h4>
+                <div class="tip-buttons">
+                    <button class="tip-btn" onclick="sendPredefinedMessage('This is too expensive for our budget')">
+                        "Too expensive"
+                    </button>
+                    <button class="tip-btn" onclick="sendPredefinedMessage('Why should we give you a MacBook?')">
+                        "Why MacBook?"
+                    </button>
+                    <button class="tip-btn" onclick="sendPredefinedMessage('We can\\'t afford extra expenses')">
+                        "Can't afford it"
+                    </button>
+                    <button class="tip-btn" onclick="sendPredefinedMessage('Maybe we can consider it')">
+                        "Maybe..."
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commitment-tracker" class="commitment-tracker-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-handshake number-highlight"></i>
+                Commitment Tracker
+            </h2>
+
+            <div class="tracker-content">
+                <div class="commitment-form">
+                    <h3>The Alternative: Working at Target</h3>
+
+                    <div class="hours-input-container">
+                        <input type="number" id="commitmentHours" min="20" max="200" value="100" class="hours-input">
+                        <label>hours at Target (for comparison)</label>
+                    </div>
+
+                    <div class="service-selector">
+                        <h4>Select Services I Can Provide:</h4>
+                        <div class="service-options">
+                            <label class="service-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Code Review & Optimization
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                                Technical Documentation
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Bug Fixes & Testing
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                UI/UX Improvements
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Customer Support
+                            </label>
+                            <label class="service-option">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Content Creation
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="commitment-btn" id="makeCommitment">
+                        <i class="fas fa-signature"></i>
+                        Make Digital Commitment
+                    </button>
+                </div>
+
+                <div class="commitment-display">
+                    <div class="commitment-card">
+                        <h4>Current Commitment</h4>
+                        <div class="commitment-value">
+                            <span class="hours-committed" id="displayHours">100</span>
+                            <span class="hours-label">hours working at Target</span>
+                        </div>
+
+                        <div class="value-equivalency">
+                            <div class="equiv-item">
+                                <span class="equiv-label">Equivalent Value:</span>
+                                <span class="equiv-value" id="dollarValue">$1,800</span>
+                            </div>
+                            <div class="equiv-item">
+                                <span class="equiv-label">Target Work Time:</span>
+                                <span class="equiv-value" id="targetWeeks">2.5 weeks</span>
+                            </div>
+                        </div>
+
+                        <div class="commitment-progress">
+                            <div class="progress-bar-commit">
+                                <div class="progress-fill-commit" id="commitmentProgressBar"></div>
+                            </div>
+                            <p>MacBook value coverage: <span id="coveragePercent">90%</span></p>
+                        </div>
+
+                        <div class="commitment-timestamp" id="commitmentTime">
+                            <!-- Will be populated when commitment is made -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="commitment" class="commitment-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-handshake number-highlight"></i>
+                My Commitment
+            </h2>
+            
+            <div class="commitment-grid">
+                <div class="commitment-card">
+                    <div class="commitment-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Fair Exchange</h3>
+                    <p>The alternative is working 100+ hours at Target to make up the cost difference. MacBook now vs. months of work elsewhere just to afford reliable hardware.</p>
+                </div>
+                
+                <div class="commitment-card">
+                    <div class="commitment-icon"><i class="fas fa-bullseye"></i></div>
+                    <h3>100% Focus</h3>
+                    <p>With this MacBook, I can channel 100% of my energy into building my startup instead of constantly troubleshooting my broken laptop or working around its limitations.</p>
+                </div>
+                
+                <div class="commitment-card">
+                    <div class="commitment-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Simple Math</h3>
+                    <p>MacBook vs extra week pay = ~100 hours of Target work to break even. But the MacBook enables immediate startup development instead of months fighting a broken laptop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-calculator number-highlight"></i>
+                Real-Time Value Calculator
+            </h2>
+
+            <div class="calculator-content">
+                <div class="calculator-card">
+                    <h3>Target Hourly Rate</h3>
+                    <div class="wage-display-fixed">
+                        <div class="wage-display">$17.00/hour</div>
+                        <p>Current Target starting wage</p>
+                    </div>
+                </div>
+
+                <div class="calculation-results">
+                    <div class="result-card">
+                        <h4>Hours Needed at Target</h4>
+                        <div class="big-number" id="hoursNeeded">118</div>
+                        <p>hours to make up the difference</p>
+                    </div>
+
+                    <div class="result-card">
+                        <h4>That's Equivalent To</h4>
+                        <div class="big-number" id="weeksEquivalent">3.0</div>
+                        <p>weeks of full-time work</p>
+                    </div>
+
+                    <div class="result-card highlight">
+                        <h4>MacBook Value</h4>
+                        <div class="big-number">∞</div>
+                        <p>years of productivity</p>
+                    </div>
+                </div>
+
+                <div class="roi-visualization">
+                    <div class="progress-comparison">
+                        <div class="progress-item">
+                            <label>Target Work Required</label>
+                            <div class="progress-bar">
+                                <div class="progress-fill target-progress" id="targetProgress"></div>
+                            </div>
+                            <span id="targetHours">118 hours</span>
+                        </div>
+
+                        <div class="progress-item">
+                            <label>MacBook Productivity Boost</label>
+                            <div class="progress-bar">
+                                <div class="progress-fill mac-progress"></div>
+                            </div>
+                            <span>Unlimited potential</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-balance-scale number-highlight"></i>
+                The Math is Simple
+            </h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-column cash-column">
+                    <h3 class="column-title"><i class="fas fa-dollar-sign"></i> Extra Week Pay</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Week 1</h4>
+                            <p>Money gets spent on bills, food, necessities</p>
+                            <span class="value-indicator negative">No lasting value</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Week 2+</h4>
+                            <p>Back to struggling with broken laptop</p>
+                            <span class="value-indicator neutral">Same limitations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs-divider">
+                    <div class="vs-circle">VS</div>
+                </div>
+
+                <div class="comparison-column mac-column">
+                    <h3 class="column-title"><i class="fas fa-laptop"></i> Keeping MacBook</h3>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Day 1</h4>
+                            <p>Reliable, powerful development environment ready</p>
+                            <span class="value-indicator positive">Immediate productivity</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Ongoing</h4>
+                            <p>Years of efficient development and growth</p>
+                            <span class="value-indicator positive">Long-term asset</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="simulator-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-desktop number-highlight"></i>
+                Productivity Loss Simulator
+            </h2>
+
+            <div class="simulator-content">
+                <div class="laptop-comparison">
+                    <div class="laptop-demo broken-laptop">
+                        <h3><i class="fas fa-exclamation-triangle"></i> My Current Broken Laptop</h3>
+                        <div class="demo-screen" id="brokenScreen">
+                            <div class="screen-content">
+                                <div class="fake-code">
+                                    <div class="code-line">function startProject() {</div>
+                                    <div class="code-line">  console.log("Starting...");</div>
+                                    <div class="code-line">  // Working on startup idea</div>
+                                    <div class="code-line blinking-cursor">|</div>
+                                </div>
+                            </div>
+                            <div class="crash-overlay" id="crashOverlay">
+                                <div class="crash-content">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <h4>System Crashed!</h4>
+                                    <p>Unsaved work lost...</p>
+                                    <div class="loading-bar">
+                                        <div class="loading-fill"></div>
+                                    </div>
+                                    <p class="recovery-text">Attempting recovery...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="demo-btn crash-btn" id="crashBtn">
+                            <i class="fas fa-bomb"></i>
+                            Simulate Daily Crash
+                        </button>
+
+                        <div class="stats broken-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">3-5x</span>
+                                <span class="stat-label">daily crashes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">2+ hrs</span>
+                                <span class="stat-label">lost daily</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vs-divider">
+                        <div class="vs-circle">VS</div>
+                    </div>
+
+                    <div class="laptop-demo macbook-demo">
+                        <h3><i class="fas fa-laptop"></i> MacBook Performance</h3>
+                        <div class="demo-screen" id="macScreen">
+                            <div class="screen-content">
+                                <div class="fake-code">
+                                    <div class="code-line">function buildStartup() {</div>
+                                    <div class="code-line">  const idea = createMVP();</div>
+                                    <div class="code-line">  deployToProduction();</div>
+                                    <div class="code-line">  // Smooth development 🚀</div>
+                                    <div class="code-line success">✓ Build successful!</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="demo-btn smooth-btn" id="smoothBtn">
+                            <i class="fas fa-rocket"></i>
+                            Show Smooth Performance
+                        </button>
+
+                        <div class="stats mac-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">0</span>
+                                <span class="stat-label">crashes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">5x</span>
+                                <span class="stat-label">faster builds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="productivity-calculator">
+                    <h3>Daily Productivity Impact</h3>
+                    <div class="impact-metrics">
+                        <div class="metric-card negative">
+                            <h4>Broken Laptop</h4>
+                            <div class="metric-value">
+                                <span class="number" id="brokenProductivity">2</span>
+                                <span class="unit">hours productive</span>
+                            </div>
+                            <div class="time-breakdown">
+                                <div class="breakdown-item">
+                                    <span>6 hours lost to crashes/slowness</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>2 hours actually coding</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="metric-card positive">
+                            <h4>MacBook</h4>
+                            <div class="metric-value">
+                                <span class="number" id="macProductivity">8</span>
+                                <span class="unit">hours productive</span>
+                            </div>
+                            <div class="time-breakdown">
+                                <div class="breakdown-item">
+                                    <span>0 hours lost to issues</span>
+                                </div>
+                                <div class="breakdown-item">
+                                    <span>8 hours building startup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lost-time-total">
+                        <h4>Monthly Impact</h4>
+                        <p>With broken laptop: <span class="lost-hours">120 hours lost</span> to technical issues</p>
+                        <p>With MacBook: <span class="gained-hours">120 hours gained</span> for startup development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="proposal" class="proposal-section">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-bullseye number-highlight"></i>
+                The Proposal
+            </h2>
+            
+            <div class="proposal-content">
+                <div class="proposal-main">
+                    <h3>Here's What I'm Asking For</h3>
+                    <div class="proposal-points">
+                        <div class="proposal-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Let me keep the MacBook instead of taking the extra week of pay</span>
+                        </div>
+                        <div class="proposal-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>It would take me ~100 hours working at Target to make up the cost difference (vs getting the MacBook now)</span>
+                        </div>
+                        <div class="proposal-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>This saves me months of fighting with a broken laptop that crashes constantly</span>
+                        </div>
+                        <div class="proposal-point">
+                            <i class="fas fa-check-circle"></i>
+                            <span>I already risked an $8,800/month internship to work here - let's make this work</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="urgency-box">
+                    <h4><i class="fas fa-clock"></i> The Hours Add Up</h4>
+                    <p>2.5 weeks of Target wages vs. years of reliable development work. I gave up $8,800/month to be here - this MacBook is the tool I need to make something happen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>This MacBook Changes Everything</h2>
+                <p>From broken laptop limitations to unlimited startup potential. MacBook now vs. months working at Target to afford one later.</p>
+                <button class="mega-cta-btn" onclick="showContactInfo()">
+                    <i class="fas fa-handshake"></i>
+                    Let's Make This Happen
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
