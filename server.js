@@ -54,6 +54,12 @@ TALKING POINTS TO USE:
 
 TONE: Professional but passionate, data-driven, business-focused, persuasive
 
+RESPONSE STYLE:
+- Keep responses SHORT (2-3 sentences max)
+- Be punchy and direct
+- Lead with the strongest argument
+- End with a clear business benefit
+
 Remember: You're trying to convince the EMPLOYER that giving Piam this MacBook is a smart BUSINESS decision that benefits THEM.`;
 
 // Real AI Response Generation
@@ -85,11 +91,11 @@ async function generateAdvocateResponse(userMessage) {
                 },
                 {
                     role: "user",
-                    content: `Company/Employer says: "${userMessage}"\n\nRespond as the MacBook Advocate AI trying to convince them this is a smart business decision. Be persuasive but professional.`
+                    content: `Company/Employer says: "${userMessage}"\n\nRespond as the MacBook Advocate AI. Keep it SHORT (2-3 sentences). Lead with your strongest point. Be persuasive but professional.`
                 }
             ],
-            max_tokens: 200,
-            temperature: 0.8
+            max_tokens: 100,
+            temperature: 0.7
         });
 
         const response = completion.choices[0].message.content.trim();
@@ -112,18 +118,18 @@ function getFallbackResponse(userMessage) {
     const message = userMessage.toLowerCase();
 
     if (message.includes('expensive') || message.includes('budget') || message.includes('cost')) {
-        return "Look, I understand budget concerns, but let's talk ROI. Piam gave up $8,800/month to work here. The alternative is Piam working 100+ hours at Target just to afford reliable hardware. The MacBook cost is tiny compared to Piam's commitment. Plus, broken hardware kills productivity - you'll recoup this investment in weeks through Piam's increased output.";
+        return "Piam gave up $8,800/month to work here. The alternative is 100+ hours at Target just to afford this MacBook. You'll recoup this investment in weeks through increased productivity.";
     }
 
     if (message.includes('why') || message.includes('convince') || message.includes('reason')) {
-        return "Here's the business case: You get Piam who sacrificed $8,800/month to be here, plus massively increased productivity from reliable hardware. Piam's current laptop crashes constantly. The alternative is Piam spending months working at Target to afford a MacBook. This isn't charity - it's smart talent retention with immediate ROI.";
+        return "Simple math: Piam sacrificed $8,800/month to be here. Current laptop crashes kill productivity daily. MacBook now = immediate ROI vs months of Piam working elsewhere to afford one.";
     }
 
     if (message.includes('no') || message.includes('can\'t') || message.includes('won\'t')) {
-        return "Wait, hear me out! Piam chose your startup over $8,800/month. Piam's broken laptop is costing you money every day through lost productivity. The alternative is Piam working 100+ hours at Target just to get reliable hardware. This is a business investment that pays for itself.";
+        return "Piam chose your startup over $8,800/month. Broken laptop = lost money daily. This MacBook pays for itself through productivity gains.";
     }
 
-    return "Piam gave up $8,800/month to build YOUR startup. The alternative is Piam working months at Target just to afford reliable hardware. Piam just needs working tools to create maximum value for your company. Broken hardware = broken productivity. A MacBook = unleashed potential. The math is simple.";
+    return "Piam gave up $8,800/month for YOUR startup. Broken hardware = broken productivity. MacBook = unleashed potential. The math is simple.";
 }
 
 // Chat endpoint
