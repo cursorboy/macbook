@@ -68,13 +68,13 @@ async function generateAdvocateResponse(userMessage) {
         console.log('OPENAI_API_KEY length:', process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0);
         console.log('==================');
         
-        // Check if OpenAI is properly configured
-        if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'demo-key' || process.env.OPENAI_API_KEY.length < 10) {
-            console.log('Using fallback - API key not properly configured');
+        // Check if OpenAI is properly configured - more lenient check
+        if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.trim() === '' || process.env.OPENAI_API_KEY === 'demo-key') {
+            console.log('Using fallback - API key missing or demo key');
             return getFallbackResponse(userMessage);
         }
         
-        console.log('Using OpenAI API for response generation');
+        console.log('Attempting OpenAI API call...');
 
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -92,10 +92,17 @@ async function generateAdvocateResponse(userMessage) {
             temperature: 0.8
         });
 
-        return completion.choices[0].message.content.trim();
+        const response = completion.choices[0].message.content.trim();
+        console.log('OpenAI API call successful, response length:', response.length);
+        return response;
 
     } catch (error) {
-        console.error('OpenAI API Error:', error.message);
+        console.error('OpenAI API Error Details:');
+        console.error('- Message:', error.message);
+        console.error('- Status:', error.status);
+        console.error('- Code:', error.code);
+        console.error('- Type:', error.type);
+        console.log('Falling back to demo responses due to API error');
         return getFallbackResponse(userMessage);
     }
 }
