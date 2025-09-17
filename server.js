@@ -60,15 +60,21 @@ Remember: You're trying to convince the EMPLOYER that giving Piam this MacBook i
 // Real AI Response Generation
 async function generateAdvocateResponse(userMessage) {
     try {
+        // Debug: Log all environment info
+        console.log('=== OPENAI DEBUG ===');
+        console.log('All env keys:', Object.keys(process.env).filter(k => k.includes('OPENAI')));
+        console.log('OPENAI_API_KEY exists:', !!process.env.OPENAI_API_KEY);
+        console.log('OPENAI_API_KEY value:', process.env.OPENAI_API_KEY ? `${process.env.OPENAI_API_KEY.substring(0, 10)}...` : 'undefined');
+        console.log('OPENAI_API_KEY length:', process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0);
+        console.log('==================');
+        
         // Check if OpenAI is properly configured
         if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'demo-key' || process.env.OPENAI_API_KEY.length < 10) {
-            console.log('OpenAI API Key Status:', {
-                exists: !!process.env.OPENAI_API_KEY,
-                length: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0,
-                starts_with: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 7) : 'none'
-            });
+            console.log('Using fallback - API key not properly configured');
             return getFallbackResponse(userMessage);
         }
+        
+        console.log('Using OpenAI API for response generation');
 
         const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -156,7 +162,10 @@ app.get('/api/status', (req, res) => {
         debug_info: {
             key_exists: !!process.env.OPENAI_API_KEY,
             key_length: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0,
-            key_prefix: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 7) : 'none'
+            key_prefix: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 10) : 'none',
+            all_openai_env_keys: Object.keys(process.env).filter(k => k.includes('OPENAI')),
+            vercel_env: process.env.VERCEL ? 'yes' : 'no',
+            node_env: process.env.NODE_ENV || 'undefined'
         }
     });
 });
