@@ -21,8 +21,7 @@ app.use(express.static(__dirname, {
 
 // Initialize OpenAI
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY || 'demo-key',
-    baseURL: process.env.OPENAI_BASE_URL || undefined
+    apiKey: process.env.OPENAI_API_KEY
 });
 
 // System prompt for the MacBook Advocate AI
@@ -74,10 +73,11 @@ async function generateAdvocateResponse(userMessage) {
             return getFallbackResponse(userMessage);
         }
         
-        console.log('Attempting OpenAI API call...');
+        console.log('Attempting OpenAI API call with model: gpt-4o-mini');
+        console.log('API Key starts with:', process.env.OPENAI_API_KEY.substring(0, 7));
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4o-mini",
             messages: [
                 {
                     role: "system",
