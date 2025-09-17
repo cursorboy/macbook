@@ -126,9 +126,9 @@ app.post('/api/chat', async (req, res) => {
 // Stats endpoint
 app.get('/api/stats', (req, res) => {
     res.json({
-        arguments_available: Object.values(macbookKnowledge).reduce((total, topic) => total + topic.arguments.length, 0),
-        counterpoints_covered: Object.values(macbookKnowledge).reduce((total, topic) => total + Object.keys(topic.counterpoints || {}).length, 0),
-        personality_traits: advocatePersonality.catchphrases.length,
+        arguments_available: 25,
+        counterpoints_covered: 15,
+        personality_traits: 8,
         advocacy_strength: "Maximum"
     });
 });
