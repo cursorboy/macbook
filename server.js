@@ -61,7 +61,12 @@ Remember: You're trying to convince the EMPLOYER that giving Piam this MacBook i
 async function generateAdvocateResponse(userMessage) {
     try {
         // Check if OpenAI is properly configured
-        if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'demo-key') {
+        if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'demo-key' || process.env.OPENAI_API_KEY.length < 10) {
+            console.log('OpenAI API Key Status:', {
+                exists: !!process.env.OPENAI_API_KEY,
+                length: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0,
+                starts_with: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 7) : 'none'
+            });
             return getFallbackResponse(userMessage);
         }
 
@@ -143,11 +148,16 @@ app.get('/api/stats', (req, res) => {
 
 // API Status endpoint
 app.get('/api/status', (req, res) => {
-    const hasApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'demo-key';
+    const hasApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'demo-key' && process.env.OPENAI_API_KEY.length > 10;
     res.json({
         openai_configured: hasApiKey,
         api_key_status: hasApiKey ? "configured" : "using_fallback",
-        ai_mode: hasApiKey ? "OpenAI GPT-3.5" : "Fallback Responses"
+        ai_mode: hasApiKey ? "OpenAI GPT-3.5" : "Fallback Responses",
+        debug_info: {
+            key_exists: !!process.env.OPENAI_API_KEY,
+            key_length: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.length : 0,
+            key_prefix: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.substring(0, 7) : 'none'
+        }
     });
 });
 
