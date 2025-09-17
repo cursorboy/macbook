@@ -141,6 +141,16 @@ app.get('/api/stats', (req, res) => {
     });
 });
 
+// API Status endpoint
+app.get('/api/status', (req, res) => {
+    const hasApiKey = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'demo-key';
+    res.json({
+        openai_configured: hasApiKey,
+        api_key_status: hasApiKey ? "configured" : "using_fallback",
+        ai_mode: hasApiKey ? "OpenAI GPT-3.5" : "Fallback Responses"
+    });
+});
+
 // Explicit routes for static files
 app.get('/styles.css', (req, res) => {
     res.setHeader('Content-Type', 'text/css');

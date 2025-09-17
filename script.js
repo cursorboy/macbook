@@ -19,6 +19,8 @@ function showContactInfo() {
 // Close modal functionality
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('contact-modal');
+    if (!modal) return;
+
     const closeBtn = modal.querySelector('.close');
     
     closeBtn.onclick = function() {
@@ -584,6 +586,30 @@ function removeTypingIndicator() {
     }
 }
 
+// Check API status and update UI
+async function checkApiStatus() {
+    try {
+        const baseUrl = window.location.origin;
+        const response = await fetch(`${baseUrl}/api/status`);
+        const status = await response.json();
+
+        const statusIndicator = document.querySelector('.status-indicator');
+        const statusText = document.querySelector('.chat-status');
+
+        if (statusIndicator && statusText) {
+            if (status.openai_configured) {
+                statusIndicator.style.backgroundColor = '#4CAF50';
+                statusText.innerHTML = '<span class="status-indicator"></span>OpenAI GPT-3.5 Active';
+            } else {
+                statusIndicator.style.backgroundColor = '#FF9800';
+                statusText.innerHTML = '<span class="status-indicator"></span>Fallback Mode (No OpenAI Key)';
+            }
+        }
+    } catch (error) {
+        console.error('Failed to check API status:', error);
+    }
+}
+
 // Handle Enter key in chat input
 document.addEventListener('DOMContentLoaded', function() {
     const chatInput = document.getElementById('chatInput');
@@ -594,6 +620,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Check API status on page load
+    checkApiStatus();
 });
 
 // Initialize all effects when page loads
