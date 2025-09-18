@@ -1,5 +1,11 @@
 // Smooth scrolling function
 function scrollToSection(sectionId) {
+    // Track section navigation
+    trackEvent('section_navigation', {
+        section: sectionId,
+        timestamp: new Date().toISOString()
+    });
+
     const element = document.getElementById(sectionId);
     if (element) {
         element.scrollIntoView({
@@ -11,6 +17,11 @@ function scrollToSection(sectionId) {
 
 // Modal functionality
 function showContactInfo() {
+    // Track contact modal open
+    trackEvent('contact_modal_opened', {
+        timestamp: new Date().toISOString()
+    });
+
     const modal = document.getElementById('contact-modal');
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -491,6 +502,12 @@ async function sendMessage() {
 
     if (!message) return;
 
+    // Track chat interaction
+    trackEvent('chat_message_sent', {
+        message_length: message.length,
+        timestamp: new Date().toISOString()
+    });
+
     // Add user message to chat
     addMessageToChat(message, 'user');
     input.value = '';
@@ -583,6 +600,13 @@ function removeTypingIndicator() {
     const typingIndicator = document.getElementById('typingIndicator');
     if (typingIndicator) {
         typingIndicator.remove();
+    }
+}
+
+// Analytics helper function
+function trackEvent(name, properties = {}) {
+    if (typeof window !== 'undefined' && window.va) {
+        window.va('track', name, properties);
     }
 }
 
