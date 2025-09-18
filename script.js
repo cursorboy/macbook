@@ -542,6 +542,14 @@ async function sendMessage() {
         advocateWins++;
         document.getElementById('advocateWins').textContent = advocateWins;
 
+        // Track chat interaction for analytics
+        if (typeof va !== 'undefined') {
+            va('track', 'Chat Message Sent', { 
+                message_count: messageCount,
+                advocate_wins: advocateWins 
+            });
+        }
+
     } catch (error) {
         console.error('Chat error:', error);
         removeTypingIndicator();
@@ -645,9 +653,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Check API status on page load
-    checkApiStatus();
 });
+
+// Check API status for analytics
+async function checkApiStatus() {
+    try {
+        const response = await fetch('/api/status');
+        const data = await response.json();
+        
+        // Track API configuration status
+        if (typeof va !== 'undefined') {
+            va('track', 'API Status Check', {
+                openai_configured: data.openai_configured,
+                ai_mode: data.ai_mode
+            });
+        }
+    } catch (error) {
+        console.log('Could not check API status');
+    }
+}
 
 // Initialize all effects when page loads
 document.addEventListener('DOMContentLoaded', function() {
@@ -667,6 +691,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initValueCalculator();
     initCommitmentTracker();
     initProductivitySimulator();
+
+    // Track page load for analytics
+    if (typeof va !== 'undefined') {
+        va('track', 'Page Loaded');
+    }
+
+    // Check API status on page load
+    checkApiStatus();
 
     // Add some dynamic content updates
     setTimeout(() => {
